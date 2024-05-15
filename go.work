@@ -1,6 +1,6 @@
 go 1.22.2
 
 use (
-	./web-service/random-data-module
+	./web-service/random-data-module/src
 	./web-service/src
 )

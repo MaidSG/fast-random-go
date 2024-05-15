@@ -4,7 +4,7 @@ package main
 import (
 	"fmt"
 	"github.com/gin-gonic/gin"
-	 "randomDataModule"
+	"randomDataModule"
 )
 
 func main() {
