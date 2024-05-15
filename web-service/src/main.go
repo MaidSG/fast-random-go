@@ -4,7 +4,7 @@ package main
 import (
 	"fmt"
 	"github.com/gin-gonic/gin"
-	 "web-service/random-data-module"
+	 "randomDataModule"
 )
 
 func main() {
@@ -16,5 +16,6 @@ func main() {
 		})
 	})
 	fmt.Println("Server is running on port 8080")
+	randomDataModule.GetRandomDomain()
 	r.Run() // listen and serve on
 }
