@@ -5,7 +5,13 @@ import (
 	"fmt"
 	"github.com/gin-gonic/gin"
 	"randomDataModule"
+	"net/http"
+	"modelModule"
 )
+
+
+
+
 
 func main() {
 	r := gin.Default()
@@ -15,7 +21,32 @@ func main() {
 			"version": "1.0.0",
 		})
 	})
-	fmt.Println("Server is running on port 8080")
+	r.GET("/random-str/:type", GetRandomAdditonOrSubtractionHandler)
+	fmt.Printf("Server is running on port %d\n", 8089)
 	randomDataModule.GetRandomDomain()
-	r.Run() // listen and serve on
+	r.Run(":8089") // listen and serve on
+}
+
+
+func createResponse(c *gin.Context,success bool, message string, data interface{}) {
+	c.JSON(http.StatusOK, modelModule.Response{
+	   Success: success,
+	   Message: message,
+	   Data: data,
+   })
+}
+
+
+
+// 获取随机的加减法题目
+func GetRandomAdditonOrSubtractionHandler(c *gin.Context) {
+	rand_type := c.Param("type")
+
+	switch rand_type {
+		case "add-or-sub":
+			createResponse(c,true, "success", randomDataModule.GetRandomAdditonOrSubtraction())
+		default:
+			createResponse(c,false, "type not found", nil)
+	}
+	
 }
